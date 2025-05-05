@@ -10,6 +10,7 @@ from inline_markdown import (
 from website import *
 import os
 import shutil
+import sys
 
 # delete all files from dst and copy all files from src to dst
 def delete_and_copy(src, dst):
@@ -27,8 +28,11 @@ def delete_and_copy(src, dst):
 
 
 def main():
-    delete_and_copy("static", "public")
-    generate_pages_recursive("content", "template.html", "public")
+    basepath = "/"
+    if (len(sys.argv) > 1):
+        basepath = sys.argv[1]
+    delete_and_copy("static", "docs")
+    generate_pages_recursive("content", "template.html", "docs", basepath)
     
 
 if __name__ == "__main__":
