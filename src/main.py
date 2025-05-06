@@ -28,7 +28,7 @@ def delete_and_copy(src, dst):
 
 
 def main():
-    basepath = "/"
+    basepath = ""
     if (len(sys.argv) > 1):
         basepath = sys.argv[1]
     delete_and_copy("static", "docs")
