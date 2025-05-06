@@ -24,8 +24,11 @@ def generate_page(from_path, template_path, dest_path, basepath):
 
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     with open(dest_path, "w", encoding="utf-8") as f:
-        text = template.replace("{{ Title }}", page_title).replace("{{ Content }}", page_html)
-        f.write(text.replace("href=\"/", f"href=\"{basepath}").replace("src=\"/", f"src=\"{basepath}"))
+        template = template.replace("{{ Title }}", page_title)
+        template = template.replace("{{ Content }}", page_html)
+        template = template.replace("href=\"/", f"href=\"{basepath}")
+        template = template.replace("src=\"/", f"src=\"{basepath}")
+        f.write(template)
 
 def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
     for entry in os.listdir(dir_path_content):
